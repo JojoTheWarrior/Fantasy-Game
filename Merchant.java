@@ -21,7 +21,15 @@ public class Merchant {
      * Introduces the merchant, what they sell, and how much the price is.
      */
     public void speakTo(){
-        System.out.println(name + ": Welcome to my store! You can buy " + productName + " for " + productCost + " gold here.");
+        System.out.println(name + ": Welcome to my store! You can buy " + productName + " for " + productCost + "x gold here.");
+    }
+
+    /**
+     * This Merchant closes its stall and leaves for the day.
+     */
+    public void leave(){
+        System.out.println(name + ": That's it for today, time to go home.");
+        isPresent = false;
     }
 
     /**
@@ -42,7 +50,7 @@ public class Merchant {
                 elf.addShields(amount);
             } 
 
-            System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : ""));
+            System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : "") + " for " + (productCost * amount) + "x Gold.");
             elf.printStats();
         }
     }
