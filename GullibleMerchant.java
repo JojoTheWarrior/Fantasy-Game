@@ -35,6 +35,7 @@ public class GullibleMerchant extends Merchant {
         }
 
         System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : ""));
+        elf.printStats();
         System.out.println("However, " + elf.getName() + " easily tricked " + name + " the GullibleMerchant and did not pay!");
 
         leave();
