@@ -8,13 +8,15 @@ import java.util.ArrayList;
  */
 public class Marketplace {
     public String name;
-    public ArrayList<Merchant> stalls;
+    public ArrayList<Merchant> stalls; // =  new ArrayList<Merchant>();
     public boolean isOpen;
-    public ArrayList<Elf> customers;
+    public ArrayList<Elf> customers; // = new ArrayList<Elf>();
 
     public Marketplace(String n){
         isOpen = false;
         name = n;
+        customers = new ArrayList<Elf>(); 
+        stalls = new ArrayList<Merchant>(); 
     }
 
     /**
@@ -23,6 +25,10 @@ public class Marketplace {
      */
     public void setOpen(boolean state){
         isOpen = state;
+        if (isOpen)
+        System.out.println("The market place is open!"); 
+        else 
+        System.out.println ("The market place is close"); 
     }
 
     /**
@@ -30,6 +36,7 @@ public class Marketplace {
      */
     public void addElf(Elf elf){
         customers.add(elf);
+        System.out.println(elf.getName() + " has entered the marketplace"); 
     }
 
     /**
@@ -37,13 +44,16 @@ public class Marketplace {
      */
     public void removeElf(Elf elf){
         customers.remove(elf);
+        System.out.println (elf.getName() +" has left the marketplace"); 
     }
 
     /**
      * Returns the Merchant at a specific stall.
      * @param i The index of the Merchant. 
      */
-    public Merchant atStall(int i){
+    /*public Merchant atStall(int i){
+        System.out.println("The elf is at stall" +i); 
         return stalls.get(i);
-    }
+        
+    }*/
 }
