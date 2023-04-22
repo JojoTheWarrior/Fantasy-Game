@@ -51,9 +51,4 @@ public class EvilMerchant extends Merchant {
         }
 
     }
-
-
-
-
-
 }
