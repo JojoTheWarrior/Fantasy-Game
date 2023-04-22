@@ -1,59 +1,66 @@
-public class EvilMerchant extends Merchant {
-    /**
-     * Evil Merchant constructor.
-     */
-    public EvilMerchant(int w, int pc, String pn, boolean ip, String n){
-        super(w, pc, pn, ip, n);
-    }
+/**
+ * This class is responsible for constructing levels and coordinating interaction of
+ * Elves with Darkrooms.
+ *
+ */
+public class Game {
+	/**
+	 * Initiates the start of game play.
+	 */
+	void play() {
+		Castle castle = new Castle();
+      Merchant merch1 = new Merchant(100, 6, "health potion", true, "Max"); 
+      Merchant merch2 = new GullibleMerchant(80, 4, "healing potion", true, "niceMax"); 
+      Merchant merch3 = new EvilMerchant(200,10, "healthful potion", true, "meanMax"); 
 
-    /**
-     * Introduces the merchant. This one seems a bit suspicious.
-     */
-    @Override
-    public void speakTo(){
-        System.out.println(name + ": Yo, what's up? Pay me " + productCost + "x Gold for 1x " + productName + ". Worry not, I will *not* scam you.");
-    }
+        Marketplace marketplace = new Marketplace("Fairview Mall");
 
-    /**
-     * This EvilMerchant decides to take the Elf's money and disappear before the Elf notices.
-     */
-    @Override
-    public void leave(){
-        System.out.println(name + ": What a silly Elf. Better scram before I get caught.");
-        isPresent = false;
-    }
+		createLevel1(castle, marketplace);
+		
+		Elf elf = new Elf("Sam");
+		
+	//	for (int i=0; i<castle.getRoomCount(); i++)
+		//{
+			DarkRoom room = castle.getRoom(0);
+			castle.enterRoom(elf, room);
+			castle.exitRoom(elf, room);
+         marketplace.setOpen(true);  
+         marketplace.addElf(elf); 
+         merch1.speakTo(); 
+         merch1.purchase(elf, 5); 
+         merch1.leave(); 
+         merch2.speakTo(); 
+         merch2.purchase(elf, 5); 
+         merch2.leave(); 
+         merch3.speakTo(); 
+         merch3.purchase(elf, 5); 
+         merch3.leave(); 
 
-    /**
-     * Purchases the product if the Elf can afford it.
-     * @param elf The Elf purchasing the product
-     * @param amount The number of times to buy the product
-     */
-    @Override
-    public void purchase(Elf elf, int amount)
-    {
-        if (amount * productCost * 2 > elf.getGold()){
-            System.out.println(elf.getName() + " tried buying " + amount + " x " + productName + "... but he couldn't afford it!");
-        } else {
-            elf.subtractGold(amount * productCost * 2);
+         
+         
+         marketplace.removeElf(elf); 
+  
+         
+       
+		//}
+	}
 
-            // adds the item that the Elf bought
-            if (productName == "potion"){
-                elf.addPotions(amount);
-            } else if (productName == "shield"){
-                elf.addShields(amount);
-            }
+	/**
+	 * Constructs one level of the game for a character.
+	 * @param castle
+	 */
+	void createLevel1(Castle castle, Marketplace marketplace)
+	{
+		DarkRoom room = new DarkRoom("foyer", 50, true);
+		castle.addRoom(room);
+		
+		room = new DarkRoom("kitchen", 100, false);
+		castle.addRoom(room);
+		
+		room = new DarkRoom("living room", 0, true);
+		castle.addRoom(room);
 
-            System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : ""));
-            elf.printStats();
-            System.out.println("However, " + elf.getName() + " did not notice that the Merchant charged him double!");
-
-            leave();
-        }
-
-    }
-
-
-
-
-
+        // adds a Merchants to the Marketplace - uses some polymorphism for the subclasses
+        
+	}
 }
