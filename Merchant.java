@@ -21,14 +21,14 @@ public class Merchant {
      * Introduces the merchant, what they sell, and how much the price is.
      */
     public void speakTo(){
-        System.out.println(name + ": Welcome to my store! You can buy " + productName + " for " + productCost + "x gold here.");
+        System.out.println(name + ": \"Welcome to my store! You can buy " + productName + "s for " + productCost + "x Gold here.\"");
     }
 
     /**
      * This Merchant closes its stall and leaves for the day.
      */
     public void leave(){
-        System.out.println(name + ": That's it for today, time to go home.");
+        System.out.println(name + ": \"That's it for today, time to go home.\"");
         isPresent = false;
     }
 
@@ -39,7 +39,7 @@ public class Merchant {
      */
     public void purchase(Elf elf, int amount){
         if (amount * productCost > elf.getGold()){
-            System.out.println(elf.getName() + " tried buying " + amount + " x " + productName + "... but he couldn't afford it!");
+            System.out.println(elf.getName() + " tried buying " + amount + "x " + productName + "... but he couldn't afford it!");
         } else {
             elf.subtractGold(amount * productCost);
 
@@ -53,5 +53,13 @@ public class Merchant {
             System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : "") + " for " + (productCost * amount) + "x Gold.");
             elf.printStats();
         }
+    }
+
+    /**
+     * The name of this Merchant, with "Merchant" as its prefix.
+     * @return This Merchant's full name.
+     */
+    public String getName(){
+        return "Merchant " + name;
     }
 }

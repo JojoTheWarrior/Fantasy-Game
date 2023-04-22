@@ -15,7 +15,7 @@ public class GullibleMerchant extends Merchant {
      */
     @Override
     public void speakTo(){
-        System.out.println(name + ": H-hey there! Welcome to my store, you can buy " + productName + " for " + productCost + "x gold here. Also, please be patient with me, it's my first day on the job... haha...");
+        System.out.println(getName() + ": \"H-hey there! Welcome to my store, you can buy " + productName + "s for " + productCost + "x Gold here. Also, please be patient with me, it's my first day on the job... haha...\"");
     }
 
     /**
@@ -24,7 +24,7 @@ public class GullibleMerchant extends Merchant {
      */
     @Override
     public void leave(){
-        System.out.println(name + ": Oh man... how could I have been so gullible? Time to go home, I guess...");
+        System.out.println(getName() + ": \"Oh man... how could I have been so gullible? Time to go home, I guess...\"");
         isPresent = false;
     }
 
@@ -46,5 +46,14 @@ public class GullibleMerchant extends Merchant {
         System.out.println("However, " + elf.getName() + " easily tricked " + name + " the GullibleMerchant and did not pay!");
 
         leave();
+    }
+
+    /**
+     * The name of this Merchant, with "GullibleMerchant" as its prefix.
+     * @return This Merchant's full name.
+     */
+    @Override
+    public String getName(){
+        return "GullibleMerchant " + name;
     }
 }

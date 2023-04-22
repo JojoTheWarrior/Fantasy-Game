@@ -5,84 +5,87 @@
  * 
  */
 class Elf {
-        String name;
-        int health;
-        int gold;
+    String name;
+    int health;
+    int gold;
     int potions;
     int shields;
-        final static int MAXGOLD = 8;
+    final static int MAXGOLD = 1000;
         
-        Elf(String name)
-        {
-                this.name = name;
-                health = 100;
-                gold = 0;
+    Elf(String name)
+    {
+        this.name = name;
+        health = 100;
+        gold = 0;
         potions = 1;
-        }
+    }
         
-        /**
-         * Takes the maximum amount of gold and returns the leftover amount.
-         * @param available The amount of gold available to be taken.
-         * @return The amount of gold leftover.
-         */
-        int takeGold(int available)
+    /**
+     * Takes the maximum amount of gold and returns the leftover amount.
+     * @param available The amount of gold available to be taken.
+     * @return The amount of gold leftover.
+     */
+    int takeGold(int available)
+    {
+        int taken = 0;
+        if (available + gold <= MAXGOLD)
         {
-                int taken = 0;
-                if (available + gold <= MAXGOLD)
-                {
             gold += available;
-                        taken = available;
-                }
-                else
-                {
-                        gold = MAXGOLD;
-                        taken = available - MAXGOLD;
-                }
-                
-                System.out.println(getName() + " takes " + taken + " gold. Gold=" + gold + " bars");
-                
-                return available - taken;
+            taken = available;
+        }
+        else
+        {
+            gold = MAXGOLD;
+            taken = available - MAXGOLD;
         }
         
-        /**
-         * Drinking potion restores health.
-         */
-        void drinkPotion()
-        {
+        System.out.println(getName() + " takes " + taken + " gold.");
+        printStats();
+        
+        return available - taken;
+    }
+    
+    /**
+     * Drinking potion restores health.
+     */
+    void drinkPotion()
+    {
         if (potions == 0){
             System.out.println(getName() + " tried drinking a potion... but he didn't have any more left!");
             return;
         }
 
         potions--;
-                health = 100;
-                
-                System.out.println(getName() + " drinks potion. Health=" + health + "%");
-        }
-        
-        /**
-         * Reduce the health by 10%, but every shield that they have decreases the damage by 1% (to a minimum of 5%). 
+        health = 100;    
+        System.out.println(getName() + " drinks potion. Health=" + health + "%");
+    }
+    
+    /**
+     * Reduce the health by 10%, but every shield that they have decreases the damage by 1% (to a minimum of 5%). 
      * If an Elf's health falls to 30% or below, they will try drinking a potion to heal.
      * If they do not have enough potions, they will simply leave the Castle to avoid dying.
-         */
-        void exposeToRadiation()
-        {
-                health = health - Math.max(5, 10 - shields);
-                
-                System.out.println(getName() + " is exposed to radiation. Health=" + health + "%");
+     * @return Whether or not the Elf has enough health to continue.
+     */
+    public boolean exposeToRadiation()
+    {
+        health = health - Math.max(5, 10 - shields);
+            
+        System.out.println(getName() + " is exposed to radiation. Health=" + health + "%");
 
         if (health <= 30){
             System.out.println("Since " + getName() + "'s health is <= 30%, he will try drinking a potion.");
             
             if (potions > 0){
-                System.out.println("The potion heals him to 100%");
+                System.out.println("The potion heals " + getName() + " to 100%");
                 potions--;
+                return true;
             } else {
                 System.out.println("Unfortunately, " + getName() + " does not have any potions left!");
-                Castle.exitCastle(this);
+                return false;
             }
         }
-        }
+        return true;
+    }
 
     /**
      * Prints how many potions, shields, and gold this Elf has.
@@ -91,13 +94,13 @@ class Elf {
         System.out.println(getName() + " has: \n\t> " + gold + "x Gold,\n\t> " + potions + "x Potions,\n\t> " + shields + "x Shields");
     }
 
-        /**
-         * A description of this Elf.
-         * @return
-         */
-        String getName() {
-                return "Elf " + name;
-        }
+    /**
+     * A description of this Elf.
+     * @return
+     */
+    String getName() {
+        return "Elf " + name;
+    }
 
     /**
      * Adds to the number of potions that this Elf has.

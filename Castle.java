@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 
 /**
- * 
+ * The Castle holds DarkRooms, which can be explored by the Elf.
  */
 class Castle {
-	public static ArrayList<DarkRoom> rooms;
+	public ArrayList<DarkRoom> rooms;
+    public String name;
 	
-	Castle()
+	Castle(String n)
 	{
+        name = n;
 		rooms = new ArrayList<DarkRoom>();
 	}
 	
@@ -24,12 +26,12 @@ class Castle {
 	 * Occurs when an Elf enters a DarkRoom
 	 * @param elf The Elf
 	 * @param room The DarkRoom
+     * @return Whether the Elf will stay in the Castle after visiting this room.
 	 */
-	void enterRoom(Elf elf, DarkRoom room)
+	public boolean enterRoom(Elf elf, DarkRoom room)
 	{
-		room.enter(elf);
-		
-		System.out.println(elf.getName() + " enters the " + room.getName() );
+        System.out.println(elf.getName() + " enters the " + room.getName() );
+		return room.enter(elf);
 	}
 	
 	/**
@@ -62,13 +64,31 @@ class Castle {
 	}
 
     /**
+     * Enters the elf into the castle.
+     * @param elf The elf to enter the castle.
+     */
+    public void enterCastle(Elf elf){
+        System.out.println(elf.getName() + " has entered " + getName() + ".");
+    }
+
+    /**
      * Makes the Elf exit the castle by removing him from every room.
      * The method is static so that it can be used from other Classes.
      */
-    public static void exitCastle(Elf elf){
+    public void exitCastle(Elf elf){
         for (DarkRoom d : rooms){
-            d.exit(elf);
+            if (d.elves.contains(elf)){
+                d.exit(elf);
+            }   
         }
-        System.out.println(elf.getName() + " has exited the castle.");
+        System.out.println(elf.getName() + " has exited " + getName() + ".");
+    }
+
+    /**
+     * Returns the name of this Castle.
+     * @return The name of this Castle.
+     */
+    public String getName(){
+        return name;
     }
 }

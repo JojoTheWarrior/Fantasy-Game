@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 /**
  * DarkRooms have certain properties that Elves can interact with.
- * 
- *
+ * They can contain gold and / or radiation, which is either good or bad for the Elf that visits it.
  */
 class DarkRoom {
 	String name;
@@ -30,15 +29,20 @@ class DarkRoom {
 	/**
 	 * Have Elf interact with DarkRoom.
 	 * @param elf
+     * @return Whether or not the Elf stays in the castle after visiting this room.
 	 */
-	void enter(Elf elf)
+	public boolean enter(Elf elf)
 	{
+        System.out.println(elf.getName() + " enters the " + getName() + ".");
 		elves.add(elf);
+
+        gold = elf.takeGold(gold);
 		
-		if (radioactive)
-			elf.exposeToRadiation();
-		
-		gold = elf.takeGold(gold);
+		if (radioactive){
+            boolean willStay = elf.exposeToRadiation();
+            return willStay;
+        }
+        return true;
 	}
 	
 	/**
@@ -47,6 +51,7 @@ class DarkRoom {
 	 */
 	void exit(Elf elf)
 	{
+        System.out.println(elf.getName() + " exits the " + getName() + ".");
 		elves.remove(elf);
 	}
 

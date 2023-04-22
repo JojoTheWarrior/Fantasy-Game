@@ -11,7 +11,7 @@ public class EvilMerchant extends Merchant {
      */
     @Override
     public void speakTo(){
-        System.out.println(name + ": Yo, what's up? Pay me " + productCost + "x Gold for 1x " + productName + ". Worry not, I will *not* scam you.");
+        System.out.println(getName() + ": \"Yo, what's up? Pay me " + productCost + "x Gold for 1x " + productName + ". Worry not, I will *not* scam you.\"");
     }
 
     /**
@@ -19,7 +19,7 @@ public class EvilMerchant extends Merchant {
      */
     @Override
     public void leave(){
-        System.out.println(name + ": What a silly Elf. Better scram before I get caught.");
+        System.out.println(getName() + ": \"What a silly Elf. Better scram before I get caught.\"");
         isPresent = false;
     }
 
@@ -32,7 +32,7 @@ public class EvilMerchant extends Merchant {
     public void purchase(Elf elf, int amount)
     {
         if (amount * productCost * 2 > elf.getGold()){
-            System.out.println(elf.getName() + " tried buying " + amount + " x " + productName + "... but he couldn't afford it!");
+            System.out.println(elf.getName() + " tried buying " + amount + "x " + productName + "... but he couldn't afford it!");
         } else {
             elf.subtractGold(amount * productCost * 2);
 
@@ -43,12 +43,20 @@ public class EvilMerchant extends Merchant {
                 elf.addShields(amount);
             }
 
-            System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : ""));
+            System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : "") + "... for " + (2 * productCost * amount) + "x Gold? Is that not double of what he was supposed to pay?");
             elf.printStats();
-            System.out.println("However, " + elf.getName() + " did not notice that the Merchant charged him double!");
+            System.out.println("However, " + elf.getName() + " did not notice that the EvilMerchant charged him double!");
 
             leave();
         }
+    }
 
+    /**
+     * The name of this Merchant, with "EvilMerchant" as its prefix.
+     * @return This Merchant's full name.
+     */
+    @Override
+    public String getName(){
+        return "EvilMerchant " + name;
     }
 }

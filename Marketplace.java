@@ -25,10 +25,9 @@ public class Marketplace {
      */
     public void setOpen(boolean state){
         isOpen = state;
-        if (isOpen)
-        System.out.println("The market place is open!"); 
+        if (isOpen) System.out.println(getName() + " is open!"); 
         else 
-        System.out.println ("The market place is close"); 
+        System.out.println (getName() + " is closed"); 
     }
 
     /**
@@ -48,12 +47,27 @@ public class Marketplace {
     }
 
     /**
-     * Returns the Merchant at a specific stall.
+     * Adds a merchant to the stalls.
+     * @param m The merchant to add.
+     */
+    public void addStall(Merchant m){
+        stalls.add(m);
+    }
+
+    /**
+     * Sets which Merchant the Elf is at.
      * @param i The index of the Merchant. 
      */
-    /*public Merchant atStall(int i){
-        System.out.println("The elf is at stall" +i); 
+    public Merchant atStall(Elf elf, int i){
+        System.out.println(elf.getName() + " is at stall #" + (i + 1) + "."); 
         return stalls.get(i);
-        
-    }*/
+    }
+
+    /**
+     * Name of the marketplace.
+     * @return The name of the marketplace.
+     */
+    public String getName(){
+        return name;
+    }
 }
