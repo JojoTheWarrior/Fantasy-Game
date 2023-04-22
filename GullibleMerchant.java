@@ -1,3 +1,10 @@
+/**
+* This is the GullibleMerchant class. This class extends the regular Merchant class. The Merchant objects are more
+* gullible, which means the elfs have the ability to scam them. The elfs have the ability to steal or not pay at all for 
+* the potion or health they are purchasing. The merchant also has the ability to speak or to flee. 
+*
+*/
+
 public class GullibleMerchant extends Merchant {    
     public GullibleMerchant(int w, int pc, String pn, boolean ip, String n){
         super(w, pc, pn, ip, n);
