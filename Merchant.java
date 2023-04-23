@@ -21,27 +21,40 @@ public class Merchant {
      * Introduces the merchant, what they sell, and how much the price is.
      */
     public void speakTo(){
-        System.out.println(name + ": \"Welcome to my store! You can buy " + productName + "s for " + productCost + "x Gold here.\"");
+        System.out.println(getName() + ": \"Welcome to my store! You can buy " + productName + "s for " + productCost + "x Gold here.\"");
     }
 
     /**
      * This Merchant closes its stall and leaves for the day.
      */
     public void leave(){
-        System.out.println(name + ": \"That's it for today, time to go home.\"");
+        System.out.println(getName() + ": \"That's it for today, time to go home.\"");
         isPresent = false;
     }
 
     /**
-     * Purchases the product if the Elf can afford it.
+     * Called when the Elf tries interacting with a closed stall.
+     */
+    public void stallClosed(Elf elf){
+        System.out.println(elf.getName() + " tried interacting with " + getName() + "'s stall... but there was nobody there.");
+    }
+
+    /**
+     * Purchases the product if the Elf can afford it. If the Merchant is absent, calls stallClosed().
      * @param elf The Elf purchasing the product
      * @param amount The number of times to buy the product
      */
     public void purchase(Elf elf, int amount){
+        if (!isPresent){
+            stallClosed(elf);
+            return;
+        }
+
         if (amount * productCost > elf.getGold()){
             System.out.println(elf.getName() + " tried buying " + amount + "x " + productName + "... but he couldn't afford it!");
         } else {
             elf.subtractGold(amount * productCost);
+            addGold(amount * productCost);
 
             // adds the item that the Elf bought
             if (productName == "potion"){
@@ -51,7 +64,6 @@ public class Merchant {
             } 
 
             System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : "") + " for " + (productCost * amount) + "x Gold.");
-            elf.printStats();
         }
     }
 
@@ -61,5 +73,13 @@ public class Merchant {
      */
     public String getName(){
         return "Merchant " + name;
+    }
+
+    /**
+     * This Merchant adds Gold to his wealth.
+     * @param amount The amount of Gold to add.
+     */
+    public void addGold(int amount){
+        wealth += amount;
     }
 }

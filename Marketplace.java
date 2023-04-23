@@ -27,7 +27,7 @@ public class Marketplace {
         isOpen = state;
         if (isOpen) System.out.println(getName() + " is open!"); 
         else 
-        System.out.println (getName() + " is closed"); 
+        System.out.println (getName() + " is closed."); 
     }
 
     /**
@@ -35,7 +35,7 @@ public class Marketplace {
      */
     public void addElf(Elf elf){
         customers.add(elf);
-        System.out.println(elf.getName() + " has entered the marketplace"); 
+        System.out.println(elf.getName() + " has entered " + getName() + "."); 
     }
 
     /**
@@ -43,7 +43,7 @@ public class Marketplace {
      */
     public void removeElf(Elf elf){
         customers.remove(elf);
-        System.out.println (elf.getName() +" has left the marketplace"); 
+        System.out.println (elf.getName() + " has left " + getName() + "."); 
     }
 
     /**

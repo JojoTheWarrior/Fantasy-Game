@@ -24,17 +24,22 @@ public class EvilMerchant extends Merchant {
     }
 
     /**
-     * Purchases the product if the Elf can afford it.
+     * Purchases the product if the Elf can afford it, but the Evil Merchant charges double. If the Merchant is not present, calls stallClosed().
      * @param elf The Elf purchasing the product
      * @param amount The number of times to buy the product
      */
     @Override
-    public void purchase(Elf elf, int amount)
-    {
+    public void purchase(Elf elf, int amount){
+        if (!isPresent){
+            stallClosed(elf);
+            return;
+        }
+
         if (amount * productCost * 2 > elf.getGold()){
             System.out.println(elf.getName() + " tried buying " + amount + "x " + productName + "... but he couldn't afford it!");
         } else {
             elf.subtractGold(amount * productCost * 2);
+            addGold(amount * productCost * 2);
 
             // adds the item that the Elf bought
             if (productName == "potion"){
@@ -44,7 +49,6 @@ public class EvilMerchant extends Merchant {
             }
 
             System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : "") + "... for " + (2 * productCost * amount) + "x Gold? Is that not double of what he was supposed to pay?");
-            elf.printStats();
             System.out.println("However, " + elf.getName() + " did not notice that the EvilMerchant charged him double!");
 
             leave();

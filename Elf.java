@@ -10,7 +10,7 @@ class Elf {
     int gold;
     int potions;
     int shields;
-    final static int MAXGOLD = 1000;
+    final static int MAXGOLD = 25000;
         
     Elf(String name)
     {
@@ -46,18 +46,13 @@ class Elf {
     }
     
     /**
-     * Drinking potion restores health.
+     * Drinking potion restores health. 
+     * Precondition: The Elf has a positive number of potions.
      */
     void drinkPotion()
     {
-        if (potions == 0){
-            System.out.println(getName() + " tried drinking a potion... but he didn't have any more left!");
-            return;
-        }
-
         potions--;
-        health = 100;    
-        System.out.println(getName() + " drinks potion. Health=" + health + "%");
+        health = 100;
     }
     
     /**
@@ -70,14 +65,14 @@ class Elf {
     {
         health = health - Math.max(5, 10 - shields);
             
-        System.out.println(getName() + " is exposed to radiation. Health=" + health + "%");
+        System.out.println(getName() + " is exposed to radiation. Health = " + health + "%.");
 
         if (health <= 30){
-            System.out.println("Since " + getName() + "'s health is <= 30%, he will try drinking a potion.");
+            System.out.println("Since " + getName() + "'s health is <= 30%, he tries drinking a potion.");
             
             if (potions > 0){
-                System.out.println("The potion heals " + getName() + " to 100%");
-                potions--;
+                System.out.println("The potion heals " + getName() + " to 100%.");
+                drinkPotion();
                 return true;
             } else {
                 System.out.println("Unfortunately, " + getName() + " does not have any potions left!");

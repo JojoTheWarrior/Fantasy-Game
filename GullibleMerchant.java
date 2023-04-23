@@ -29,12 +29,17 @@ public class GullibleMerchant extends Merchant {
     }
 
     /**
-     * The Elf tricks the GullibleMerchant and gets the product for free.
+     * The Elf tricks the GullibleMerchant and gets the product for free. If the Merchant is not there, calls stallClosed().
      * @param elf The Elf purchasing the product
      * @param amount The number of times to buy the product
      */
     @Override
     public void purchase(Elf elf, int amount){
+        if (!isPresent){
+            stallClosed(elf);
+            return;
+        }
+
         if (productName == "potions"){
             elf.addPotions(amount);
         } else if (productName == "shield"){
@@ -42,7 +47,6 @@ public class GullibleMerchant extends Merchant {
         }
 
         System.out.println(elf.getName() + " bought " + amount + "x " + productName + (amount > 1 ? "s" : ""));
-        elf.printStats();
         System.out.println("However, " + elf.getName() + " easily tricked " + name + " the GullibleMerchant and did not pay!");
 
         leave();
