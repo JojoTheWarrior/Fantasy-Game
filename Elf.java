@@ -1,9 +1,14 @@
-/**
- * Elves explore Dark Rooms and gain gold from them.
- * To protect themselves, they have potions that can heal their HP and shields that can lower the amount of damage that they take.
- * With the gold that they get, they can go to a Marketplace and trade with the Merchants there.
- * 
+ /**
+ * Name: Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ * Teacher: Ms. Krasteva
+ * Date: April 21, 2023
+ * Description: Elves explore Dark Rooms and gain gold from them.
+ *              To protect themselves, they have potions that can heal their HP and shields that can lower the amount of damage that they take.
+ *              With the gold that they get, they can go to a Marketplace and trade with the Merchants there.
+ * @version 23.04.21
+ * @author Joshua Wang, Ma'ayan Shai, and Chelsea Wong
  */
+
 class Elf {
     String name;
     int health;
@@ -11,7 +16,11 @@ class Elf {
     int potions;
     int shields;
     final static int MAXGOLD = 25000;
-        
+    
+    /**
+     * Constructs an Elf.
+     * @param name The name of the Elf.
+     */
     Elf(String name)
     {
         this.name = name;
@@ -91,7 +100,7 @@ class Elf {
 
     /**
      * A description of this Elf.
-     * @return
+     * @return the name of the Elf
      */
     String getName() {
         return "Elf " + name;
@@ -99,6 +108,7 @@ class Elf {
 
     /**
      * Adds to the number of potions that this Elf has.
+     * @param amount The number of potions that this Elf gains.
      */
     public void addPotions(int amount){
         potions += amount;
@@ -106,6 +116,7 @@ class Elf {
 
     /**
      * Returns the amount of gold this Elf has.
+     * @return The amount of gold this Elf has.
      */
     public int getGold(){
         return gold;

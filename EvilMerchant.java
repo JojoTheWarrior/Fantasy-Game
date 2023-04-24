@@ -1,6 +1,21 @@
+/**
+ * Name: Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ * Teacher: Ms. Krasteva
+ * Date: April 21, 2023
+ * Description: EvilMerchant is a subclass extended from the Merchant class for evil and suspicious merchants
+ * 
+ * @version 23.04.21
+ * @author Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ */
+
 public class EvilMerchant extends Merchant {
     /**
      * Evil Merchant constructor.
+     * @param w The amount of gold the merchant has.
+     * @param pc The cost of the product.
+     * @param pn The name of the product.
+     * @param ip Whether or not the merchant is present.
+     * @param n The name of the merchant.
      */
     public EvilMerchant(int w, int pc, String pn, boolean ip, String n){
         super(w, pc, pn, ip, n);

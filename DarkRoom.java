@@ -1,9 +1,16 @@
 import java.util.ArrayList;
 
-/**
- * DarkRooms have certain properties that Elves can interact with.
- * They can contain gold and / or radiation, which is either good or bad for the Elf that visits it.
+ /**
+ * Name: Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ * Teacher: Ms. Krasteva
+ * Date: April 21, 2023
+ * Description: DarkRooms have certain properties that Elves can interact with.
+ * 				They can contain gold and / or radiation, which is either good or bad for the Elf that visits it.
+ * 
+ * @version 23.04.21
+ * @author Joshua Wang, Ma'ayan Shai, and Chelsea Wong
  */
+
 class DarkRoom {
 	String name;
 	int gold;
@@ -57,7 +64,7 @@ class DarkRoom {
 
 	/**
 	 * A description of this DarkRoom
-	 * @return
+	 * @return the name of the DarkRoom
 	 */
 	String getName() {
 		

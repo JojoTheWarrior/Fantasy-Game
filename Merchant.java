@@ -1,7 +1,14 @@
 /**
- * This is the default type of merchant, and it is the superclass for all merchants. 
- * Each merchant sells exactly one type of item for a set price.
+ * Name: Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ * Teacher: Ms. Krasteva
+ * Date: April 21, 2023
+ * Description: This is the default type of merchant, and it is the superclass for all merchants. 
+ *              Each merchant sells exactly one type of item for a set price.
+ * 
+ * @version 23.04.21
+ * @author Joshua Wang, Ma'ayan Shai, and Chelsea Wong
  */
+
 public class Merchant {
     public int wealth;
     public int productCost;
@@ -9,6 +16,14 @@ public class Merchant {
     public boolean isPresent;
     public String name;
 
+    /**
+     * Constructor for Merchant.
+     * @param w The amount of gold the merchant has.
+     * @param pc The cost of the product.
+     * @param pn The name of the product.
+     * @param ip Whether or not the merchant is present.
+     * @param n The name of the merchant.
+     */
     public Merchant(int w, int pc, String pn, boolean ip, String n){
         wealth = w;
         productCost = pc;
@@ -34,6 +49,7 @@ public class Merchant {
 
     /**
      * Called when the Elf tries interacting with a closed stall.
+     * @param elf The Elf trying to interact with the stall.
      */
     public void stallClosed(Elf elf){
         System.out.println(elf.getName() + " tried interacting with " + getName() + "'s stall... but there was nobody there.");

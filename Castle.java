@@ -1,12 +1,23 @@
 import java.util.ArrayList;
 
 /**
- * The Castle holds DarkRooms, which can be explored by the Elf.
+ * Name: Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ * Teacher: Ms. Krasteva
+ * Date: April 21, 2023
+ * Description: The Castle holds DarkRooms, which can be explored by the Elf.
+ * 
+ * @version 23.04.21
+ * @author Joshua Wang, Ma'ayan Shai, and Chelsea Wong
  */
+
 class Castle {
 	public ArrayList<DarkRoom> rooms;
     public String name;
 	
+	/**
+	 * constructor for Castle class
+	 * @param n The name of the Castle
+	 */
 	Castle(String n)
 	{
         name = n;
@@ -15,7 +26,7 @@ class Castle {
 	
 	/**
 	 * Adds a DarkRoom to the Castle level
-	 * @param room
+	 * @param room The DarkRoom to add
 	 */
 	void addRoom(DarkRoom room)
 	{
@@ -57,7 +68,7 @@ class Castle {
 	/**
 	 * Returns a DarkRoom according to index.
 	 * @param index
-	 * @return
+	 * @return The DarkRoom at the index.
 	 */
 	DarkRoom getRoom(int index) {
 		return rooms.get(index);
@@ -74,6 +85,7 @@ class Castle {
     /**
      * Makes the Elf exit the castle by removing him from every room.
      * The method is static so that it can be used from other Classes.
+	 * @param elf The Elf to exit the castle.
      */
     public void exitCastle(Elf elf){
         for (DarkRoom d : rooms){

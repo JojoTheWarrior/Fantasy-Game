@@ -1,8 +1,13 @@
 /**
- * This class is responsible for constructing levels and coordinating interaction of
- * Elves with Darkrooms.
- *
+ * Name: Joshua Wang, Ma'ayan Shai, and Chelsea Wong
+ * Teacher: Ms. Krasteva
+ * Date: April 21, 2023
+ * Description:  This class is responsible for constructing levels and coordinating interaction of Elves with Darkrooms.
+ * 
+ * @version 23.04.21
+ * @author Joshua Wang, Ma'ayan Shai, and Chelsea Wong
  */
+
 public class Game {
     /**
      * Initiates the start of game play.
